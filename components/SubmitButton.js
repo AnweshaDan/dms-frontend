@@ -1,18 +1,19 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = (theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
     },
   },
-}));
+});
 
-export default function SubmitButton() {
-  const classes = useStyles();
-
+class SubmitButton extends Component {
+  
+  render(){
+    const {classes }= this.props;
   return (
     <div className={classes.root}>
       
@@ -22,4 +23,6 @@ export default function SubmitButton() {
      
     </div>
   );
+  }
 }
+export default withStyles(useStyles)(SubmitButton)
