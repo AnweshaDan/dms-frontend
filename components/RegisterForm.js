@@ -2,6 +2,7 @@
   import React from 'react';
   import { withStyles } from '@material-ui/core/styles';
   import TextField from '@material-ui/core/TextField';
+  import Link from 'next/link'
   
   const useStyles = (theme) => ({
     root: {
@@ -17,8 +18,10 @@
       {
           super(props);
           this.state={
-              username:"",
-              password:""
+              email:"",
+              password:"",
+              phone:""
+              
           }
           this.handleChange = this.handleChange.bind(this);
           
@@ -31,17 +34,18 @@
           ...this.state,
           [evt.target.name]: value
         });
-        console.log(this.state.username);
+        console.log(this.state.email);
         console.log(this.state.password);
+        console.log(this.state.phone);
         
        
       }
      
       
     
-      handleSubmit(event) {//LATERRRRR
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
+      handleSubmit(event) {//send to API
+
+        console.log("first step of data done")
       }
 
 
@@ -53,12 +57,13 @@
     const {classes} = this.props;
   
     return (//LATERR
-      <form className={classes.root} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+        <div>
+                 <form className={classes.root} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
         <TextField id="standard-basic" 
-        label="Standard" 
-        value={this.state.username} 
+        label="Email" 
+        value={this.state.email} 
         onChange={this.handleChange} 
-        name="username"/>
+        name="email"/>
         <TextField
             id="standard-password-input"
             label="Password"
@@ -68,10 +73,22 @@
             onChange={this.handleChange}
            
           />
+          <TextField id="standard-basic" 
+        label="Phone No." 
+        value={this.state.phone} 
+        onChange={this.handleChange} 
+        name="phone"/>
           
       </form>
+      <button onClick={this.handleSubmit}>Submit</button>
+      <Link href='/clinic' ><button onClick={this.handleSubmit}>Register as Clinic</button></Link>
+      <Link href='/hospital' ><button onClick={this.handleSubmit}>Register as Hospital</button></Link>
+      </div>
+ 
     );
       }
   }
   export default withStyles(useStyles)(RegistrationForm)
+  //alert('A name was submitted: ' + this.state.value);
+ // event.preventDefault();
   
